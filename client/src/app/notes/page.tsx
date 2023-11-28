@@ -1,3 +1,4 @@
+import Note from "@/components/Note";
 import { auth } from "@clerk/nextjs";
 import axios from "axios";
 
@@ -18,13 +19,12 @@ export default async function NotesPage() {
 
   return (
     <>
-      <div className="">
+      <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {notes.map((item: Note, index: number) => (
-          <div key={index}>
-            <p>Title: {item.title}</p>
-            <p>Content: {item.content}</p>
-          </div>
-        ))}
+          <Note key={index} title={item.title} content={item.content}/>
+        ))
+        
+      }
       </div>
     </>
   );
