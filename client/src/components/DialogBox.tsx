@@ -1,7 +1,7 @@
 'use client'
 import axios from "axios";
 import { useUser } from '@clerk/nextjs'
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 
 interface AddNoteProps {
@@ -16,14 +16,7 @@ export default function DialogBox({ open, setOpen }: AddNoteProps) {
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
     const [error, setError] = useState<string | null>(null);
-    const [userId, setUserId] = useState(null);
 
-
-    useEffect(() => {
-        if (user) {
-              setUserId(user.id);
-        }
-    }, [user]);
 
     const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -34,10 +27,9 @@ export default function DialogBox({ open, setOpen }: AddNoteProps) {
         }
 
         try {
-            const postSuccess = await axios.post('http://localhost:5000/api/postnotes', {
+            const postSuccess = await axios.post('api/note', {
                 title,
                 content,
-                userId
             });
 
             if (postSuccess) {
