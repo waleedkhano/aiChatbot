@@ -21,6 +21,10 @@ export default function DialogBox({ open, setOpen }: AddNoteProps) {
     const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
+        if (!user) {
+            setError("Error: not authorized user");
+            return;
+        }
         if (!title || !content) {
             setError("Error: Please enter all fields");
             return;

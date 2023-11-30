@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { UserButton } from '@clerk/nextjs'
 import DialogBox from '@/components/DialogBox'
 import { useState } from 'react'
+import ChatButton from '@/components/ChatButton'
 
 export default function Navbar() {
     const [showNoteDialog, setShowNoteDialog] = useState(false);
@@ -19,6 +20,7 @@ export default function Navbar() {
                     <div className="flex items-center gap-2">
                         <UserButton afterSignOutUrl='/' appearance={{ elements: { avatarBox: { width: "2.5rem", height: "2.5rem" } } }} />
                         <button className='bg-white text-black p-2 rounded-lg' onClick={() => setShowNoteDialog(true)}>+ Add Notes</button>
+                        <ChatButton/>
                     </div>
                 </div>
             </div>
